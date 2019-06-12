@@ -38,12 +38,6 @@
 			</exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
-
-
 		<!-- JPA Data (We are going to use Repositories, Entities, Hibernate, etc...) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -131,8 +125,16 @@
 
 	<build>
 		<finalName>demo</finalName>
+    <testResources>
+        <testResource>
+            <directory>src/test/java</directory>
+            <excludes>
+                <exclude>**/*.java</exclude>
+            </excludes>
+        </testResource>
+    </testResources>    
 		<plugins>
-			<plugin>
+    	<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -143,9 +145,15 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
+        <configuration>
 					<argLine>-Dfile.encoding=UTF-8</argLine>
-				</configuration>
+          <includes>
+            <include>tests/DemoApplicationTests.java</include>
+          </includes>
+          <systemProperties>
+            <karate.options>--tags ~@ignore</karate.options>
+          </systemProperties>            
+        </configuration>
 			</plugin>
 
 		</plugins>
