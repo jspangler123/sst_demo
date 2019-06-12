@@ -26,7 +26,7 @@
             <AppenderRef ref="RollingFile" />
         </Root>
  
-        <Logger name="com.newman" level="DEBUG">
+        <Logger name="com.mjs" level="DEBUG">
             <AppenderRef ref="Console" />
             <AppenderRef ref="RollingFile" />
         </Logger>
